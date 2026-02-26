@@ -1,3 +1,5 @@
+/* ═══════════════ STUDENT DASHBOARD ═══════════════ */
+
 .student-dashboard,
 .scholarship-list-page,
 .applications-page,
@@ -5,39 +7,319 @@
 .apply-page,
 .detail-page,
 .profile-page {
-    animation: fadeIn 0.5s ease;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+.student-dashboard.visible,
+.scholarship-list-page,
+.applications-page,
+.financial-aid-page,
+.apply-page,
+.detail-page,
+.profile-page {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+/* ═══════════════ FLOATING PARTICLES (LIGHT THEME) ═══════════════ */
+
+.particles-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(124, 58, 237, 0.15);
+    animation: particleFloat linear infinite;
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
+}
+
+.particle:nth-child(odd) {
+    background: rgba(6, 182, 212, 0.1);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.15);
+}
+
+.particle:nth-child(3n) {
+    background: rgba(236, 72, 153, 0.1);
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.15);
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* ═══════════════ HERO SECTION ═══════════════ */
+
+.dashboard-hero {
+    position: relative;
+    padding: 48px;
+    margin-bottom: 32px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(236, 72, 153, 0.03) 50%, rgba(6, 182, 212, 0.05) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease backwards;
+}
+
+.dashboard-hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.15), rgba(6, 182, 212, 0.2), transparent);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-greeting {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 16px;
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.05);
+    animation: fadeInUp 0.6s ease backwards 0.1s;
+}
+
+.sparkle-icon {
+    animation: pulse 2s ease-in-out infinite;
+    color: var(--primary);
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    animation: fadeInUp 0.6s ease backwards 0.2s;
+    line-height: 1.2;
+}
+
+.gradient-text {
+    background: var(--gradient-primary);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease-in-out infinite;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    animation: fadeInUp 0.6s ease backwards 0.3s;
+}
+
+/* Hero floating orbs */
+.hero-visual {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40%;
+    pointer-events: none;
+}
+
+.hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+}
+
+.hero-orb.orb-1 {
+    width: 200px;
+    height: 200px;
+    background: rgba(124, 58, 237, 0.1);
+    top: -30%;
+    right: 10%;
+    animation: orbFloat 15s ease-in-out infinite;
+}
+
+.hero-orb.orb-2 {
+    width: 150px;
+    height: 150px;
+    background: rgba(236, 72, 153, 0.08);
+    bottom: -20%;
+    right: 30%;
+    animation: orbFloat 18s ease-in-out infinite reverse;
+}
+
+.hero-orb.orb-3 {
+    width: 100px;
+    height: 100px;
+    background: rgba(6, 182, 212, 0.08);
+    top: 30%;
+    right: 50%;
+    animation: orbFloat 12s ease-in-out infinite 3s;
+}
+
+/* ═══════════════ GLASS CARD ═══════════════ */
+
+.glass-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.glass-card:hover {
+    border-color: rgba(124, 58, 237, 0.2);
+    box-shadow: 0 12px 30px rgba(124, 58, 237, 0.08);
+    transform: translateY(-2px);
+}
+
+/* ═══════════════ STATS GRID ═══════════════ */
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 20px;
     margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
 }
 
 .stats-grid .stat-card {
-    animation: fadeIn 0.5s ease backwards;
+    animation: fadeInUp 0.6s ease backwards;
+    position: relative;
 }
+
+.stat-card.glass-card {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+}
+
+.stat-card.glass-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06), 0 0 20px var(--stat-glow, rgba(124, 58, 237, 0.1));
+}
+
+.stat-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.stat-card.glass-card:hover .stat-icon-wrap {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.stat-pulse {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: ripple 3s ease-in-out infinite;
+}
+
+/* ═══════════════ DASHBOARD GRID ═══════════════ */
 
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
 }
 
+.dashboard-section {
+    animation: fadeInUp 0.7s ease backwards 0.3s;
+}
+
+/* Section Header */
 .section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-icon {
+    color: var(--primary);
+    animation: pulse 3s ease-in-out infinite;
 }
 
 .section-header h2 {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
 }
+
+/* ═══════════════ DEADLINE LIST ═══════════════ */
 
 .deadline-list,
 .app-list {
@@ -49,33 +331,48 @@
 .deadline-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 16px;
-    padding: 14px;
+    padding: 16px;
     border-radius: var(--radius-sm);
-    background: var(--bg-subtle);
-    border: 1px solid transparent;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-light);
     transition: var(--transition);
     text-decoration: none;
     color: inherit;
+    animation: fadeInUp 0.5s ease backwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.deadline-indicator {
+    width: 4px;
+    height: 36px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px currentColor;
 }
 
 .deadline-item:hover {
-    border-color: var(--border);
-    background: var(--bg-white);
+    border-color: rgba(124, 58, 237, 0.2);
+    background: white;
     box-shadow: var(--shadow-sm);
+    transform: translateX(6px);
+}
+
+.deadline-info {
+    flex: 1;
 }
 
 .deadline-info h4 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 2px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 3px;
     color: var(--text-primary);
 }
 
 .deadline-info p {
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
 }
 
 .deadline-meta {
@@ -86,89 +383,169 @@
 }
 
 .amount {
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: 800;
     color: var(--success);
+    font-family: 'Space Grotesk', sans-serif;
 }
+
+/* ═══════════════ APP ITEMS ═══════════════ */
 
 .app-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px;
+    padding: 16px;
     border-radius: var(--radius-sm);
-    background: var(--bg-subtle);
-    border: 1px solid transparent;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-light);
     transition: var(--transition);
+    animation: fadeInUp 0.5s ease backwards;
 }
 
 .app-item:hover {
-    border-color: var(--border);
-    background: var(--bg-white);
+    border-color: rgba(124, 58, 237, 0.2);
+    background: white;
     box-shadow: var(--shadow-sm);
+    transform: translateX(6px);
 }
 
 .app-info h4 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 2px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 3px;
     color: var(--text-primary);
 }
 
 .app-info p {
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
 }
 
+/* ═══════════════ QUICK ACTIONS ═══════════════ */
+
 .quick-actions {
-    margin-top: 0;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.7s ease backwards 0.5s;
 }
 
 .quick-actions h2 {
     font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 20px;
     color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.quick-actions .section-title {
+    margin-bottom: 22px;
 }
 
 .actions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 16px;
 }
 
 .action-card {
-    padding: 24px;
-    border-radius: var(--radius-sm);
-    background: var(--bg-white);
+    padding: 28px;
+    border-radius: var(--radius);
+    background: white;
     border: 1px solid var(--border);
-    transition: var(--transition);
+    transition: var(--transition-bounce);
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
     box-shadow: var(--shadow-sm);
 }
 
+.action-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
 .action-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--primary-100);
-    box-shadow: var(--shadow-md);
-    background: var(--primary-50);
+    transform: translateY(-8px);
+    border-color: rgba(124, 58, 237, 0.3);
+    box-shadow: 0 15px 40px rgba(124, 58, 237, 0.1);
+}
+
+.action-card:hover::before {
+    opacity: 1;
+}
+
+.action-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.action-card:hover .action-icon {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .action-card h4 {
-    margin: 12px 0 4px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 700;
     color: var(--text-primary);
+    margin-bottom: 4px;
 }
 
 .action-card p {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
 }
 
-/* Scholarship List */
+.action-arrow {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: var(--primary);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: var(--transition);
+}
+
+.action-card:hover .action-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ═══════════════ EMPTY STATE ═══════════════ */
+
+.empty-icon-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    animation: float 3s ease-in-out infinite;
+    border: 1px solid var(--border);
+}
+
+.empty-icon-wrap svg {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* ═══════════════ SCHOLARSHIP LIST ═══════════════ */
+
 .filters-bar {
     display: flex;
     gap: 12px;
@@ -189,11 +566,11 @@
 }
 
 .chip {
-    padding: 8px 16px;
+    padding: 8px 18px;
     border-radius: 100px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    background: var(--bg-white);
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: white;
     border: 1px solid var(--border);
     color: var(--text-secondary);
     cursor: pointer;
@@ -203,17 +580,22 @@
 }
 
 .chip:hover {
-    border-color: var(--primary-100);
+    border-color: rgba(124, 58, 237, 0.4);
     color: var(--primary);
     background: var(--primary-50);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+    transform: translateY(-2px);
 }
 
 .chip.active {
     background: var(--primary-50);
     border-color: var(--primary);
-    color: var(--primary);
-    font-weight: 600;
+    color: var(--primary-dark);
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
 }
+
+/* ═══════════════ SCHOLARSHIPS GRID & ANIMATION ═══════════════ */
 
 .scholarships-grid {
     display: grid;
@@ -222,82 +604,131 @@
 }
 
 .scholarship-card {
-    background: var(--bg-white);
+    background: white;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 24px;
-    transition: var(--transition);
-    animation: fadeIn 0.5s ease backwards;
+    transition: var(--transition-bounce);
+    animation: fadeInUp 0.6s ease backwards;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
     box-shadow: var(--shadow-sm);
+    z-index: 1;
+}
+
+.scholarship-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+
+.scholarship-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.05), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
 }
 
 .scholarship-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--primary-100);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 10px 20px rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.2);
+    z-index: 2;
+}
+
+.scholarship-card:hover::before {
+    transform: scaleX(1);
+}
+
+.scholarship-card:hover::after {
+    opacity: 1;
 }
 
 .scholarship-card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 3;
 }
 
 .scholarship-card-header h3 {
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 800;
     flex: 1;
     margin-right: 12px;
     color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    transition: color 0.3s;
+}
+
+.scholarship-card:hover .scholarship-card-header h3 {
+    color: var(--primary-dark);
 }
 
 .scholarship-card .provider {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
     margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .scholarship-card .desc {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     flex: 1;
 }
 
 .scholarship-card .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 .scholarship-card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 16px;
-    border-top: 1px solid var(--border-light);
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 3;
 }
 
 .scholarship-card-footer .amount {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: var(--success);
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .scholarship-card-footer .deadline {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    font-weight: 500;
 }
 
-/* Detail Page */
+/* ═══════════════ DETAIL PAGE ═══════════════ */
+
 .detail-header {
     display: flex;
     justify-content: space-between;
@@ -308,55 +739,70 @@
 }
 
 .detail-header h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 800;
     color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .detail-header .provider {
     color: var(--text-secondary);
-    margin-top: 4px;
+    margin-top: 6px;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .detail-amount {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 800;
     color: var(--success);
+    font-family: 'Space Grotesk', sans-serif;
+    text-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
 .detail-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 24px;
+    gap: 28px;
 }
 
 .detail-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
-    margin: 20px 0;
+    gap: 16px;
+    margin: 24px 0;
 }
 
 .meta-item {
-    padding: 14px 20px;
-    background: var(--bg-subtle);
+    padding: 16px 20px;
+    background: white;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    flex: 1;
+    min-width: 140px;
+}
+
+.meta-item:hover {
+    border-color: rgba(124, 58, 237, 0.2);
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.08);
+    transform: translateY(-2px);
 }
 
 .meta-item label {
-    font-size: 0.73rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     font-weight: 700;
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .meta-item span {
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 700;
+    font-size: 1.05rem;
     color: var(--text-primary);
 }
 
@@ -366,13 +812,19 @@
 }
 
 .requirements-list li {
-    padding: 10px 0;
+    padding: 14px 0;
     border-bottom: 1px solid var(--border-light);
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
+    gap: 12px;
+    font-size: 0.95rem;
     color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.requirements-list li:hover {
+    color: var(--primary-dark);
+    transform: translateX(6px);
 }
 
 .requirements-list li:last-child {
@@ -385,73 +837,80 @@
 }
 
 .progress-section {
-    margin: 20px 0;
+    margin: 24px 0;
 }
 
 .progress-label {
     display: flex;
     justify-content: space-between;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     margin-bottom: 8px;
     color: var(--text-secondary);
+    font-weight: 600;
 }
 
-/* Applications */
+/* ═══════════════ APPLICATIONS ═══════════════ */
+
 .status-tabs {
     display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
+    gap: 10px;
+    margin-bottom: 28px;
     flex-wrap: wrap;
 }
 
-/* Apply Page */
+/* ═══════════════ APPLY PAGE ═══════════════ */
+
 .apply-form {
     max-width: 700px;
 }
 
 .apply-form .card {
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 }
 
 .apply-form h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 18px;
     color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .apply-form .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 20px;
 }
 
 .file-upload {
-    border: 2px dashed var(--border);
+    border: 2px dashed #cbd5e1;
     border-radius: var(--radius-sm);
-    padding: 32px;
+    padding: 40px;
     text-align: center;
     cursor: pointer;
     transition: var(--transition);
-    background: var(--bg-subtle);
+    background: var(--bg-hover);
 }
 
 .file-upload:hover {
     border-color: var(--primary);
     background: var(--primary-50);
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.1);
 }
 
 .file-upload p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-weight: 500;
 }
 
-/* Financial Aid */
+/* ═══════════════ FINANCIAL AID ═══════════════ */
+
 .aid-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
+    gap: 24px;
 }
 
 .aid-card {
@@ -462,27 +921,5 @@
 .aid-type {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-}
-
-@media (max-width: 768px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .detail-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .scholarships-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .apply-form .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .detail-header {
-        flex-direction: column;
-    }
+    gap: 8px;
 }

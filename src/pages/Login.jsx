@@ -70,11 +70,7 @@ export default function Login() {
                             </button>
                         </form>
                         <p className="auth-footer">Don't have an account? <Link to="/register">Create one</Link></p>
-                        <div className="demo-creds">
-                            <p><strong>Demo Accounts:</strong></p>
-                            <p>Admin: admin@scholarhub.com / admin123</p>
-                            <p>Student: student@edu.com / student123</p>
-                        </div>
+                      
                     </div>
                 </div>
             </div>
